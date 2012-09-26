@@ -23,13 +23,16 @@ void testApp::setup(){
         }
         myPolys.push_back(poly(i-1, tempRad, relPos, direction));
     }
+    int tempRadNum = 0;
     
     for(int i=0; i<myPolys.size(); i++){
         int counter = 0;
         int refCounter = 0;
         bool foundInit = false;
+        tempRadNum++;
         for(int j = 0; j<myPolys.size(); j++){
             if(myPolys[i].radius == myPolys[j].radius) {
+                
                 //cout << myPolys[i].radius << " == " << myPolys[j].radius << endl;
                 counter++; foundInit = true; refCounter = j;
                 //cout<<"works" << endl;
@@ -43,6 +46,7 @@ void testApp::setup(){
         }
             for(int j = i; j<=refCounter; j++){
                 myPolys[j].numInRadius = counter;
+                myPolys[j].radNum = tempRadNum;
             }
             
             i = refCounter;
@@ -52,7 +56,7 @@ void testApp::setup(){
     }
     
     for(int i = 0; i<myPolys.size(); i++){
-        cout << "Num in Radius: " <<  myPolys[i].relPos << endl;
+        cout << "Num in Radius: " <<  myPolys[i].radNum << endl;
     }
 
 }

@@ -10,7 +10,7 @@
 
 poly::poly(int _count, int _radius, int relRadPos, int _direction){
     refNum = _count;
-    sides = 5;
+    sides = 3;
     radius = _radius;
     centerX  = ofGetWidth()/2;
     centerY = ofGetHeight()/2;
@@ -54,8 +54,10 @@ void poly::modulate(){
     x = centerX + radius * cos(angle+proportion) * direction;
     y = centerY + radius * -sin(angle+proportion);
     float polySine = sin(ofGetElapsedTimef()*2);
-    polyRad = ofMap(polySine, -1, 1, 5, 30);
-    float tempRedShift = sin(ofGetFrameRate()*.01);
+    polyRad = ofMap(polySine, -1, 1, 20, 100);
+    float tempRedShift = sin(ofGetElapsedTimef()*5 + numInRadius);
+    color.setHue(ofMap(tempRedShift, -1, 1, 200, 360));
+    
     //color.r = round(ofMap(tempRedShift, -1, 1, 0, 255));
     pos.x  = x;
     pos.y = y;

@@ -30,6 +30,7 @@ public:
     float x, y, centerX, centerY;
     int numInRadius;
     int  relPos, direction;
+    int radNum;
     //float size;
     
 };
