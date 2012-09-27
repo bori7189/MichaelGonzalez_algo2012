@@ -16,7 +16,7 @@ poly::poly(int _count, int _radius, int relRadPos, int _direction){
     centerY = ofGetHeight()/2;
     direction = _direction;
     
-    color.r = 255; color.g = 0; color.b = 0;  color.a  = 50;
+    color.r = 255; color.g = 0; color.b = 0;  color.a  = 70;
     
     degree = 0;
     
@@ -35,12 +35,15 @@ void poly::draw(){
     ofSetRectMode(OF_RECTMODE_CENTER);
     //ofSetColor(255, 0, 0, 25);
     polygon.setColor(color);
+    
     polygon.draw();
     ofDisableAlphaBlending();
     ofPopMatrix();
 }
 
-void poly::modulate(){
+void poly::modulate(int mouseX, int mouseY){
+    centerX = mouseX;
+    centerY = mouseY;
     ofPoint origin;
     origin.x = 0; origin.y = 0;
     degree++;
@@ -54,9 +57,10 @@ void poly::modulate(){
     x = centerX + radius * cos(angle+proportion) * direction;
     y = centerY + radius * -sin(angle+proportion);
     float polySine = sin(ofGetElapsedTimef()*2);
-    polyRad = ofMap(polySine, -1, 1, 20, 100);
+    polyRad = ofMap(polySine, -1, 1, 20, 40);
     float tempRedShift = sin(ofGetElapsedTimef()*5 + numInRadius);
-    color.setHue(ofMap(tempRedShift, -1, 1, 200, 360));
+    color.setHue(ofMap(tempRedShift, -1, 1, 140, 145));
+    color.a = 50;
     
     //color.r = round(ofMap(tempRedShift, -1, 1, 0, 255));
     pos.x  = x;

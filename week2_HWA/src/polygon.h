@@ -17,7 +17,7 @@ public:
     poly(int _count, int _radius, int relRadPos, int _direction);
     
     void draw();
-    void modulate();
+    void modulate(int _mouseX, int _mouseY);
     
     int refNum, sides;
     ofColor color;

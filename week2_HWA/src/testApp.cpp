@@ -64,18 +64,26 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     for(int i = 0; i<myPolys.size(); i++){
-        myPolys[i].modulate();
+        myPolys[i].modulate(mouseX, mouseY);
     }
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    
+    ofPushMatrix();
+    ofTranslate(0,0 ,500);
+    
+    
     for(int i = 0; i<myPolys.size(); i++){
         
         myPolys[i].draw();
     }
-    
+    ofPopMatrix();
+    ofDisableBlendMode();
 }
 
 //--------------------------------------------------------------
