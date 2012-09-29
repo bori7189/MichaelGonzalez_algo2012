@@ -13,12 +13,12 @@ void testApp::update(){
         int _x = ofRandom(ofGetWidth());
         int _y = ofGetHeight();
         myShapes.push_back(shape(-1, _x, _y));
-        cout << "Current Size of vector"<< myShapes.size() << endl;
+        //cout << "Current Size of vector"<< myShapes.size() << endl;
     }
     for(int i = 0; i<myShapes.size(); i++){
         myShapes[i].update();
         if(myShapes[i].checkStatus()) {
-            cout << "Vector size minimized" << endl;
+           // cout << "Vector size minimized" << endl;
             myShapes.erase(myShapes.begin()+i);
             i--;
         }

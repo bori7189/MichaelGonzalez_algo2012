@@ -19,13 +19,14 @@ shape::shape(int _index, int _x, int _y){
     posEnd.y = -50.0;
     catchUpSpeed = ofRandom(0.05, 0.001);
     
-    color.r = 255;
-    color.g = 50;
-    color.b = 0;
-    color.a = 50;
+    color.r = ofRandom(30);
+    color.g = ofRandom(0, 100);
+    color.b = ofRandom(100, 230);
+    color.a = 100;
     
     width = 50; widthBegin = 50; widthEnd = 10;
     height = 50; heightBegin = 50; heightEnd = 100;
+    opacityBegin = 100; opacityEnd = 0;
     xChange = ofRandom(0.05f, 0.1f);
     pctForY = 0;
     pctForOpacity;
@@ -43,20 +44,25 @@ void shape::update(){
     width = (1-pctTemp) * widthBegin + (pctTemp) * widthEnd;
     height = (1-pctTemp) * heightBegin + (pctTemp) * heightEnd;
     
+    
     if(pctForY > .75){
-        
+        pctForOpacity += 0.035f;
+        color.a = (1-pctForOpacity) * opacityBegin + (pctForOpacity) * opacityEnd;
     }
     pos.x = ofMap(sin(ofGetElapsedTimef())*20, -1.0, 1.0, pos.x-xChange, pos.x+xChange);
     
 }
 
 void shape::draw(){
+    
+    ofEnableBlendMode(OF_BLENDMODE_SCREEN);
     ofEnableAlphaBlending();
     ofSetRectMode(OF_RECTMODE_CENTER);
     ofSetColor(color);
     
     ofRect(pos.x, pos.y, width, height);
     ofDisableAlphaBlending();
+    ofDisableBlendMode();
 }
 
 bool shape::checkStatus(){

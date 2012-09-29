@@ -18,7 +18,7 @@ public:
     
     ofPoint pos, posEnd, posBegin;
     ofColor color, startColor, EndColor;
-    float width, widthBegin, widthEnd, height, heightBegin, heightEnd, opacity, opacityBegin, opacityEnd, catchUpSpeed, xChange, pctForY, pctForOpacity;
+    float width, widthBegin, widthEnd, height, heightBegin, heightEnd, opacityBegin, opacityEnd, catchUpSpeed, xChange, pctForY, pctForOpacity;
     int index;
 
     
