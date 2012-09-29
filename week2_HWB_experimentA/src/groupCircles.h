@@ -15,21 +15,31 @@
 class circle{
     public:
         circle(float _radius, ofPoint _center);
+        
+        
+        
     
         ofPoint center;
         float radius;
+          
+    
+    
 };
 
 class groupCircles{
 public:
-    groupCircles();
+    groupCircles(int _index);
     
     void draw();
     void update();
+    bool opaque();
+    
     
     vector <circle> circleSet;
     ofColor color;
-    int numOfCircles, sizeBetweenRadius;
+    int numOfCircles, sizeBetweenRadius, opacForPct;
+    float beginTime;
+    
 };
 
 #endif /* defined(__MusicVisualization__groupCircles__) */

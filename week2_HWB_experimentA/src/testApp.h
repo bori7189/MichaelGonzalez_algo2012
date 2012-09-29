@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "shape.h"
+#include "groupCircles.h"
 
 class testApp : public ofBaseApp{
 	public:
@@ -20,8 +21,9 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         vector <shape> myShapes;
-
-bool mouseIsPressed;
+        vector <groupCircles> myCircles;
+        bool mouseIsPressed;
+    int myCirclesCounter;
 
 
 };

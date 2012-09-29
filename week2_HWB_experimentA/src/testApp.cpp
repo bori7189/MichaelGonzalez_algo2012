@@ -4,11 +4,16 @@
 void testApp::setup(){
     ofBackground(0, 16, 35);
     ofSetVerticalSync(true);
-    
+    ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+    ofSetWindowTitle(ofToString(ofGetFrameRate()));
+    ofEnableAlphaBlending();
+    ofSetColor(0, 0, 0, 5);
+    ofSetRectMode(OF_RECTMODE_CORNER);
+    ofRect(0, 0, ofGetWidth(), ofGetHeight());
     if(mouseIsPressed){
         int _x = ofRandom(ofGetWidth());
         int _y = ofGetHeight();
@@ -23,13 +28,36 @@ void testApp::update(){
             i--;
         }
     }
+    
+    int numCirclesAdded =1;// ofRandom(3);
+    if(myCircles.size()<=15){
+        if(myCirclesCounter == 30){
+    for(int i = 0; i<numCirclesAdded; i++){
+       // myCircles.push_back(groupCircles(ofGetElapsedTimef()));
+        myCirclesCounter = 0;
+    }
+    }
+        myCirclesCounter++;
+    }
+    for(int i = 0; i<myCircles.size(); i++){
+        myCircles[i].update();
+        if(myCircles[i].opaque()){
+            myCircles.erase(myCircles.begin()+i);
+        }
+    }
+    ofDisableAlphaBlending();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    for(int i = 0; i<myCircles.size(); i++){
+        myCircles[i].draw();
+    }
+    
     for(int i = 0; i<myShapes.size(); i++){
         myShapes[i].draw();
     }
+    
     
 }
 
