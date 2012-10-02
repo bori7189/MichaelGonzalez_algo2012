@@ -50,6 +50,7 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    ofPushMatrix();
     for(int i = 0; i<myCircles.size(); i++){
         myCircles[i].draw();
     }
@@ -58,7 +59,7 @@ void testApp::draw(){
         myShapes[i].draw();
     }
     
-    
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
