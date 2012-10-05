@@ -60,6 +60,9 @@ void testApp::update(){
         myFireworks[i].resetForce();
         myFireworks[i].addForce(0, 0.05);  //gravity of firework 
         myFireworks[i].update();
+        if(myFireworks[i].done == true){
+            myFireworks.erase(myFireworks.begin()+i);
+        }
     }
     
     
@@ -73,7 +76,7 @@ void testApp::draw(){
     for(int i = 0; i<myFireworks.size(); i++){
         myFireworks[i].draw();
     }
-
+    
 }
 
 //--------------------------------------------------------------

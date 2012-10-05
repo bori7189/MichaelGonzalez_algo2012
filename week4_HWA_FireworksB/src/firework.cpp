@@ -13,6 +13,7 @@ firework::firework(ofPoint _start){
     color.set(255, 255, 255);
     colorExplosion.set(ofRandom(255), ofRandom(255), ofRandom(255));
     explode = false;
+    done = false;
 }
 
 void firework::setInitialCondition(float px, float py, float vx, float vy){
@@ -51,6 +52,13 @@ void firework::update(){
             particles[i].addForce(0, 0.05); //gravity
             particles[i].addDampingForce();
             particles[i].update();
+            
+            if(particles[i].done == true) particles.erase(particles.begin()+i);
+            //cout << particles.size() << endl;
+            
+            if(particles.size()==1){
+                done = true;
+            }
         }
         //cout << "explosion size: " << particles.size() << "     ";
     }

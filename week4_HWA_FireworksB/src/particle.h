@@ -34,6 +34,8 @@ public:
     ofColor color;
     int opacity;
     
+    bool done;
+    
     vector <ofPoint> pointPath;
 protected:
 private:

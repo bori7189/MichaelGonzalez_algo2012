@@ -15,6 +15,7 @@ particle::particle(ofPoint _center, ofColor _color){
     opacity = 100;
     //color.set(ofRandom(255), ofRandom(255), ofRandom(255));
     setInitialCondition(center.x, center.y, ofRandom(-3, 3), ofRandom(-3, 3));
+    done = false;
 }
 
 
@@ -55,6 +56,15 @@ void particle::update(){
     if(pointPath.size()>100){
         pointPath.erase(pointPath.begin());
     }
+    
+    if(pointPath[pointPath.size()-1].y > ofGetHeight()){
+        for(int i = 0; i< pointPath.size(); i++){
+            pointPath.erase(pointPath.begin());
+        }
+        done = true;
+    }
+    
+    //cout << pointPath.size() << endl;
     
     
     
