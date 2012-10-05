@@ -11,9 +11,15 @@
 firework::firework(ofPoint _start){
     setInitialCondition(_start.x, _start.y, ofRandom(-2, 2), ofRandom(-7, -8));
     color.set(255, 255, 255);
-    colorExplosion.set(ofRandom(255), ofRandom(255), ofRandom(255));
+    colorExplosion.set(ofRandom(100,255), ofRandom(100, 255), ofRandom(100, 255));
     explode = false;
     done = false;
+    fireworkSound.loadSound("whistleFirework.mp3");
+    fireworkSound.setVolume(0.50f);
+    fireworkSound.play();
+    explosionSound.loadSound("fireworkExplosion.mp3");
+    //explosionSound.setVolume(0.25f);
+    
 }
 
 void firework::setInitialCondition(float px, float py, float vx, float vy){
@@ -37,11 +43,14 @@ void firework::update(){
     if(fireworkVel.y >= 1){
        // 
         explode = true;
+        fireworkSound.stop();
+        
        // cout << fireworkPos.x << "  ,  " << fireworkPos.y << endl;
     }
     
     if(explode){
         if(particles.size()==0){
+            explosionSound.play();
         for(int i = 0; i < 100; i++){
             //cout << "EXPLOSION" << endl;
             particles.push_back(particle(fireworkPos, colorExplosion));
@@ -68,6 +77,7 @@ void firework::draw(){
     
     if(!explode){
     ofSetColor(color);
+        ofFill();
    // cout << "Drawing firework" << endl;
    // cout << fireworkPos.x << " , " << fireworkPos.y << endl;
     ofCircle(fireworkPos.x, fireworkPos.y, 3);

@@ -35,6 +35,9 @@ public:
     bool explode, done;
 
     //float explosionChecker;
+    
+    ofSoundPlayer fireworkSound;
+    ofSoundPlayer explosionSound;
 
 
 

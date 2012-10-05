@@ -16,6 +16,8 @@ particle::particle(ofPoint _center, ofColor _color){
     //color.set(ofRandom(255), ofRandom(255), ofRandom(255));
     setInitialCondition(center.x, center.y, ofRandom(-3, 3), ofRandom(-3, 3));
     done = false;
+    
+   
 }
 
 

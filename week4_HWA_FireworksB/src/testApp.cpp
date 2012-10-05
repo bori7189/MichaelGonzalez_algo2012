@@ -14,13 +14,14 @@ void testApp::setup(){
     newEmitterPos = true;
     numberFireworks = 10;
     background.loadImage("background.png");
-    
+    ofToggleFullscreen();
     
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     
+    //ofSetWindowTitle(ofToString(ofGetFrameRate()));
     background.resize(ofGetWidth(), background.getHeight()*(ofGetWidth()/background.getWidth()));
     if(!fireworkCounterEqual) fireworkCounterEmmiter++;
     
@@ -39,7 +40,7 @@ void testApp::update(){
         
         if(myFireworks.size() < numberFireworks){
             //a suddle delay so the group of fireworks dont all fire off at once
-            if(delayEmitter == 15){
+            if(delayEmitter >= ofRandom(15, 50)){
                 delayEmitter = 0;
             myFireworks.push_back(firework(emitterPos));
             }
@@ -67,6 +68,8 @@ void testApp::update(){
     
     
     //cout << "fireworks size:   " << myFireworks.size() << endl;
+    
+    ofSoundUpdate();
 }
 
 //--------------------------------------------------------------

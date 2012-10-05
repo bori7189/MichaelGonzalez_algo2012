@@ -37,6 +37,8 @@ public:
     bool done;
     
     vector <ofPoint> pointPath;
+    
+    
 protected:
 private:
     
