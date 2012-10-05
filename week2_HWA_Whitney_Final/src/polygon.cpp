@@ -59,7 +59,7 @@ void poly::modulate(int mouseX, int mouseY){
     float polySine = sin(ofGetElapsedTimef()*2);
     polyRad = ofMap(polySine, -1, 1, 20, 40);
     float tempRedShift = sin(ofGetElapsedTimef()*5 + numInRadius);
-   // color.setHue(ofMap(tempRedShift, -1, 1, 0, 360));
+    //color.setHue(ofMap(tempRedShift, -1, 1, 0, 360));
 
     color.setHue(ofMap(tempRedShift, -1, 1, 140, 145));
     color.a = 50;

@@ -20,6 +20,8 @@ public:
     ofColor color, startColor, EndColor;
     float width, widthBegin, widthEnd, height, heightBegin, heightEnd, opacityBegin, opacityEnd, catchUpSpeed, xChange, pctForY, pctForOpacity;
     int index;
+    
+    float zMovement;
 
     
     void update();
