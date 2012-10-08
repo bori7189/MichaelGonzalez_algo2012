@@ -19,6 +19,7 @@ firework::firework(ofPoint _start){
     fireworkSound.play();
     explosionSound.loadSound("fireworkExplosion.mp3");
     //explosionSound.setVolume(0.25f);
+    fireWorkExplodeVel = ofRandom(1, 3);
     
 }
 
@@ -40,7 +41,7 @@ void firework::update(){
     fireworkVel += fireworkFrc;
     fireworkPos += fireworkVel;
     
-    if(fireworkVel.y >= 1){
+    if(fireworkVel.y >= fireWorkExplodeVel){
        // 
         explode = true;
         fireworkSound.stop();

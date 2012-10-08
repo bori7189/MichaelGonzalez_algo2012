@@ -6,13 +6,12 @@ void testApp::setup(){
     cout << "---------------------------------------------------" << endl;
     ofSetVerticalSync(true);
     ofBackground(100);
-    startPos = ofGetWidth()*0.30;
-    endPos = ofGetWidth()*0.70;
     
-    fireworkCounterSet = 300;
+    
+    fireworkCounterSet = 100;
     fireworkCounterEqual = false;
     newEmitterPos = true;
-    numberFireworks = 10;
+    numberFireworks = ofRandom(5, 20);
     background.loadImage("background.png");
     ofToggleFullscreen();
     
@@ -20,7 +19,8 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
+    startPos = ofGetWidth()*0.30;
+    endPos = ofGetWidth()*0.70;
     //ofSetWindowTitle(ofToString(ofGetFrameRate()));
     background.resize(ofGetWidth(), background.getHeight()*(ofGetWidth()/background.getWidth()));
     if(!fireworkCounterEqual) fireworkCounterEmmiter++;
@@ -47,12 +47,17 @@ void testApp::update(){
         }
         
         //once all the fireworks have been emmitted
-        else{
+        else {
             newEmitterPos = true;
             fireworkCounterEmmiter = 0;
             fireworkCounterSet = ofRandom(20, 100);
             fireworkCounterEqual = false;
-            
+            if(numberFireworks < 8){
+            numberFireworks = ofRandom(10, 15);
+            }
+            else{
+            numberFireworks = ofRandom(1, 5);
+            }
         }
         
     }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "particleEmitter.h"
 
 class testApp : public ofBaseApp{
 	public:
@@ -17,5 +18,13 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-        ofImage bg;
+    
+        vector <particleEmitter> particlePath;
+
+        float prevMouseX;
+        float prevMouseY;
+
+        ofColor tempColor;
+
+
 };

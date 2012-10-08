@@ -12,10 +12,13 @@
 particle::particle(ofPoint _center, ofColor _color){
     center = _center;
     color = _color;
+    originalColor = _color;
     opacity = 100;
     //color.set(ofRandom(255), ofRandom(255), ofRandom(255));
     setInitialCondition(center.x, center.y, ofRandom(-3, 3), ofRandom(-3, 3));
     done = false;
+    counter = 0;
+    streakLength = ofRandom(50, 100);
     
    
 }
@@ -46,6 +49,7 @@ void particle::setInitialCondition(float px, float py, float vx, float vy){
 
 //------------------------------------------------------------
 void particle::update(){
+    counter++;
     vel = vel + frc;
     pos = pos + vel;
     
@@ -55,11 +59,13 @@ void particle::update(){
     temp.y = pos.y;
     
     pointPath.push_back(temp);
-    if(pointPath.size()>100){
+    if(pointPath.size()>streakLength){
         pointPath.erase(pointPath.begin());
     }
     
-    if(pointPath[pointPath.size()-1].y > ofGetHeight()){
+    
+    
+    if(pointPath[0].y > ofGetHeight()){
         for(int i = 0; i< pointPath.size(); i++){
             pointPath.erase(pointPath.begin());
         }
@@ -68,8 +74,22 @@ void particle::update(){
     
     //cout << pointPath.size() << endl;
     
+    if(counter > streakLength*.20  && counter < streakLength*1.25){
+        if(opacity > 0) opacity--;
+        
+       
+        
+        //cout << "opacity: " << opacity;
+    }
+    else if(counter>streakLength*1.25 && opacity > 0){
+        opacity-= 0.5f;
+    }
     
+    if(huePct < 1.0f){
+        huePct += 0.001f;
+    }
     
+    color.setHue((1-huePct)*originalColor.getHue()+(huePct)*(originalColor.getHue()+100));
     //shaper
     
 //    float tempPct = pos.y/(ofGetHeight()*0.9f);
@@ -79,8 +99,11 @@ void particle::update(){
 //------------------------------------------------------------
 void particle::draw(){
     ofEnableAlphaBlending();
+    
+    if(counter < streakLength*1.25)
     ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
     ofSetColor(color, opacity);
+
     
     //ofCircle(pos.x, pos.y, 3);
     

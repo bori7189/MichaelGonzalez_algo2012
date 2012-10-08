@@ -42,6 +42,8 @@ public:
 
 
     vector <particle> particles;
+    
+    int fireWorkExplodeVel;
 };
 
 

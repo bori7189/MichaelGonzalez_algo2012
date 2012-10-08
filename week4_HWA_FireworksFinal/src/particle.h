@@ -31,12 +31,16 @@ public:
     
     float damping;
     ofPoint center;
-    ofColor color;
-    int opacity;
+    ofColor color, originalColor, endColor;
+    float opacity;
     
     bool done;
     
     vector <ofPoint> pointPath;
+    int counter;
+    int streakLength;
+    
+    float huePct;
     
     
 protected:
