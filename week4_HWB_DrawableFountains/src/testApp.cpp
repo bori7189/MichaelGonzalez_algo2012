@@ -17,6 +17,8 @@ void testApp::update(){
 //    }
     //testEmit.update();
     
+    ofSetWindowTitle(ofToString(ofGetFrameRate()));
+    
     for (int i = 0 ; i<particlePath.size(); i++) {
         particlePath[i].update();
     }
@@ -49,7 +51,9 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    for(int i = 0;i<particlePath.size(); i++){
+        particlePath.erase(particlePath.begin()+i);
+    }
 }
 
 //--------------------------------------------------------------

@@ -59,7 +59,7 @@ void firework::update(){
         }
         for(int i = 0; i<particles.size(); i++){
             particles[i].resetForce();
-            particles[i].addForce(0, 0.05); //gravity
+            particles[i].addForce(0, 0.04); //gravity
             particles[i].addDampingForce();
             particles[i].update();
             

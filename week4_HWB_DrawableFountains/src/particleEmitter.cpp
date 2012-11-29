@@ -36,6 +36,10 @@ void particleEmitter::update(){
         particleSet[i].addDampingForce();
         particleSet[i].update();
     }
+    
+    for(int i= 0; i<particleSet.size(); i++){
+        if(particleSet[i].pos.x < 0 || particleSet[i].pos.x > ofGetWidth() || particleSet[i].pos.y < 0 || particleSet[i].pos.y > ofGetHeight()) particleSet.erase(particleSet.begin()+i);
+    }
 }
 
 void particleEmitter::draw(){
@@ -44,7 +48,7 @@ void particleEmitter::draw(){
     ofSetColor(color, 25);
     for (int i = 0; i<particleSet.size(); i++) {
         ofEnableAlphaBlending();
-        ofEnableBlendMode(OF_BLENDMODE_SCREEN);
+        //ofEnableBlendMode(OF_BLENDMODE_SCREEN);
         particleSet[i].draw();
         ofDisableBlendMode();
         ofDisableAlphaBlending();
