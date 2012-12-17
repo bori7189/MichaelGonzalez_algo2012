@@ -5,8 +5,8 @@
 //------------------------------------------------------------
 particle::particle(){
 	setInitialCondition(0,0,0,0);
-	damping = 0.08f;
-    posPoint = new ofVec2f;
+	damping = 0.00005f;
+    
 }
 
 //------------------------------------------------------------
@@ -36,16 +36,28 @@ void particle::addDampingForce(){
 
 //------------------------------------------------------------
 void particle::setInitialCondition(float px, float py, float vx, float vy){
+    
     //ofVec2f tempPos = *posPoint;
+
     //tempPos.set(px,py);
-    posPoint->set(px, py );
-	vel.set(vx,vy);
+    posPoint = new ofVec2f;
+    posPoint->set(px, py);
+	//vel.set(vx,vy);
 }
 
 //------------------------------------------------------------
 void particle::update(){	
+    
+    //cout << "initial vel x: " << vel.x << " vel y: " << vel.y << endl;
+    //cout << "force : " << frc << endl;
 	vel = vel + frc;
-	//*posPoint = *posPoint + vel;
+    ofVec2f tempPos = *posPoint;
+    
+	tempPos = tempPos + vel;
+    *posPoint = tempPos;
+    
+    //cout << "vel x: " << vel.x << " vel y: " << vel.y << endl;
+    
 }
 
 //------------------------------------------------------------
@@ -92,3 +104,44 @@ void particle::bounceOffWalls(){
 	}
 	
 }
+
+//-------------------------------------------------------------
+
+void particle::addRepulsionForce( float px, float py, float radius, float strength){
+	
+	
+	ofVec2f posOfForce;
+	posOfForce.set(px, py);
+	
+	ofVec2f diff = *posPoint - posOfForce;
+	
+	if (diff.length() < radius){
+       
+		float pct = 1 - (diff.length() / radius);
+		diff.normalize();
+		frc.x += diff.x * pct * strength;
+		frc.y += diff.y * pct * strength;
+	}
+	
+}
+
+//------------------------------------------------------------
+void particle::addAttractionForce( float px, float py, float radius, float strength){
+	
+	
+	ofVec2f posOfForce;
+	posOfForce.set(px, py);
+	
+	ofVec2f diff = *posPoint - posOfForce;
+	//cout << "diff: " << diff.length() << " radius: " << radius << endl;
+	if (diff.length() < radius){
+         //cout << "HAPPENNING" << endl;
+		float pct = 1 - (diff.length() / radius);
+		diff.normalize();
+		frc.x -= diff.x * pct * strength;
+		frc.y -= diff.y * pct * strength;
+	}
+	
+}
+
+

@@ -14,8 +14,13 @@
 
 class connections{
 public:
-    connections();
+    connections(ofVec2f *_posPtrA, ofVec2f *_posPtrB);
      
+    ofVec2f *posPtrA, *posPtrB, posA, posB;
+    ofColor color;
+    
+    bool draw();
+    
 private:
 protected:
 };

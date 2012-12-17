@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "timePos.h"
 
 class testApp : public ofBaseApp{
 	public:
@@ -18,10 +19,6 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        vector <ofPoint> pointSet;
-    
-        float radius, angle, xorig, yorig;
-        float radiusAdd;
-        float changeRadius, tanAngle;
-        float x, y;
+        vector <timePos> posSet;
+        float startTime;
 };

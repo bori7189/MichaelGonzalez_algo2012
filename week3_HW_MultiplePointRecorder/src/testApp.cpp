@@ -1,74 +1,34 @@
 #include "testApp.h"
 
-
 //--------------------------------------------------------------
 void testApp::setup(){
     ofSetVerticalSync(true);
     ofBackground(0);
-    changeRadius = ofRandom(70, 150);
     
-    xorig = ofGetWidth()/2;
-    yorig = ofGetHeight()/2;
-    
-    radiusAdd = 0.1;
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
-   
-    radius = radius + radiusAdd;
-    if (radius >= changeRadius) {
-      changeRadius = ofRandom(70,150);
-      radiusAdd *= -1;
-        
-        
-        xorig = x + radius;
-    }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-    
-    
-    if(ofGetElapsedTimef()>0) angle = ofGetElapsedTimef()*3.5;
-    else  angle = 3.5;
-    
-    
-    
-    x = xorig + radius * cos (angle);
-    y = yorig + radius * -sin(angle);
-    
-    float dx = x - xorig;
-    float dy = y - yorig;
-    
-    tanAngle = (atan2(dx, dy)) *RAD_TO_DEG;
-    
-    //cout << tanAngle  << endl;
-    ofPoint temp;
-    temp.x = x;
-    temp.y = y;
-    pointSet.push_back(temp);
-    
-    
-    ofSetRectMode(OF_RECTMODE_CENTER);
-    ofSetColor(255 , 0, 127);
-    ofFill();
-    ofCircle(x,y,10);
-    
-    ofSetColor(200, 0, 255);
-    ofNoFill();
-    ofBeginShape();
-    for(int i = 0; i<pointSet.size(); i++){
-        ofVertex(pointSet[i].x, pointSet[i].y);
+    ofSetColor(255);
+    ofPoint tempPos;
+    tempPos.set(20,20);
+    ofDrawBitmapString("Hit 'c' to clear screen and 'f' to enter Fullscreen", tempPos);
+    for (int i = 0; i<posSet.size(); i++) {
+        posSet[i].draw();
     }
-    ofEndShape();
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if(key == 'f')
+    ofToggleFullscreen();
+    else if (key == 'c')
+    posSet.clear();
 }
 
 //--------------------------------------------------------------
@@ -83,12 +43,29 @@ void testApp::mouseMoved(int x, int y){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-
+    timePos tempPos;
+    tempPos.x = x;
+    //cout << "y: " << y << endl;
+    tempPos.y = y;
+    tempPos.t = ofGetElapsedTimef() - startTime;
+    
+    posSet.push_back(tempPos);
+    posSet[posSet.size()-1].setupPosSet();
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+    
+    //posSet.clear();
+    startTime = ofGetElapsedTimef();
+    ofSetColor(200, 0, 0);
+    ofNoFill();
+    timePos tempPos;
+    tempPos.x = x;
+    tempPos.y = y;
+    tempPos.t = 0;
+    
+    posSet.push_back(tempPos);
 }
 
 //--------------------------------------------------------------

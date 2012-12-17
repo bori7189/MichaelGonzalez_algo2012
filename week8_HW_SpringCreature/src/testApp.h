@@ -5,6 +5,7 @@
 #include "ofMain.h"
 #include "particle.h"
 #include "vectorField.h"
+#include "connections.h"
 
 class testApp : public ofSimpleApp{
 	
@@ -30,6 +31,8 @@ class testApp : public ofSimpleApp{
 		bool bFade;
     int widthBox;
     int heightBox;
+        
+        vector<connections> connectionSet;
 	
 };
 

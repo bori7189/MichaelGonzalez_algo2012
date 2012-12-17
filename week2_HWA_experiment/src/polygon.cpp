@@ -27,7 +27,7 @@ void poly::draw(){
 }
 
 void poly::update(){
-    float colorSine = sin(ofGetElapsedTimef()*5+(refPos*.1));
-    color.setHue(ofMap(colorSine, -1, 1, 100, 360));
+    float colorSine = abs(sin(ofGetElapsedTimef()+(refPos*.1)));
+    color.setHue(ofMap(colorSine, 0.0, 1.0, 0.0f, 360.0f));
    // color.r = ofMap(colorSine, -1, 1, 0, 255);
 }

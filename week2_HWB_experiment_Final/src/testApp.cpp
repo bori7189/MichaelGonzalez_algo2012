@@ -38,6 +38,8 @@ void testApp::update(){
     ofRect(0, 0, ofGetWidth(), ofGetHeight());
     
     
+    song.play();
+    
     if(mouseIsPressed){
         int _x = ofRandom(ofGetWidth());
         int _y = ofGetHeight();
@@ -155,14 +157,14 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    mouseIsPressed = true;
-    cout << mouseIsPressed << endl;
+    //mouseIsPressed = true;
+    //cout << mouseIsPressed << endl;
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-    mouseIsPressed = false;
-    cout << mouseIsPressed << endl;
+    //mouseIsPressed = false;
+    //cout << mouseIsPressed << endl;
 }
 
 //--------------------------------------------------------------
